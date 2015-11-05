@@ -3,12 +3,12 @@ using SimplePatternMatching.Specification;
 
 namespace SimplePatternMatching
 {
-    public class PatternRule<T> : Rule<T>
+    public class PatternActionRule<T> : Rule<T>
     {
         private readonly Action<T> action;
         private readonly PatternMatchSpecification specification; 
 
-        public PatternRule(Action<T> action, PatternMatchSpecification specification)
+        public PatternActionRule(Action<T> action, PatternMatchSpecification specification)
         {
             if (action == null)
             {
@@ -33,12 +33,12 @@ namespace SimplePatternMatching
         }
     }
 
-    public class PatternRule<T1, T2> : Rule<T1, T2>
+    public class PatternActionRule<T1, T2> : Rule<T1, T2>
     {
         private readonly Action<T1, T2> action;
         private readonly PatternMatchSpecification<T1, T2> specification;
 
-        public PatternRule(Action<T1, T2> action, PatternMatchSpecification<T1,T2> specification)
+        public PatternActionRule(Action<T1, T2> action, PatternMatchSpecification<T1,T2> specification)
         {
             if (action == null)
             {

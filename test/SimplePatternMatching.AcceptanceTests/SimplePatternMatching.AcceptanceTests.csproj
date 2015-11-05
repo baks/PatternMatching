@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PatternMatchingFuncTests.cs" />
     <Compile Include="PatternMatchingTests.cs" />
     <Compile Include="PatternMatchingTwoArgumentsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

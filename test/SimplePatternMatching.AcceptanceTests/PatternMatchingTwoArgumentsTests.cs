@@ -19,7 +19,7 @@ namespace SimplePatternMatching.AcceptanceTests
         [Fact]
         public void ShouldCallProperActionWhenPatternMatches()
         {
-            var action = new Match<string, int>
+            var action = new MatchAction<string, int>
             {
                 {"a", 3, (s, i) => state = PatternAAnd3Invocation},
                 {"b", 5, (s, i) => state = PatternBAnd5Invocation},
@@ -34,7 +34,7 @@ namespace SimplePatternMatching.AcceptanceTests
         [Fact]
         public void ShouldNotCallAnyActionWhenPatternDoesNotMatch()
         {
-            var action = new Match<string, int>
+            var action = new MatchAction<string, int>
             {
                 {"a", 3, (s, i) => state = PatternAAnd3Invocation},
                 {"b", 5, (s, i) => state = PatternBAnd5Invocation}
@@ -48,7 +48,7 @@ namespace SimplePatternMatching.AcceptanceTests
         [Fact]
         public void ShouldCallDefaultActionWhenPatternDoesNotMatchAndDefaultIsSpecified()
         {
-            var action = new Match<string, int>
+            var action = new MatchAction<string, int>
             {
                 {"a", 3, (s, i) => state = PatternAAnd3Invocation},
                 {"b", 5, (s, i) => state = PatternBAnd5Invocation},
@@ -63,7 +63,7 @@ namespace SimplePatternMatching.AcceptanceTests
         [Fact]
         public void ShouldEvaluatePredicatesForAllArgumentsWhenMatchingPatterns()
         {
-            var action = new Match<string, int>
+            var action = new MatchAction<string, int>
             {
                 {"a", 3, (s, i) => state = PatternAAnd3Invocation},
                 {s => s.StartsWith("d"), i => i > 10 && i < 15, (s, i) => state = PredicatePatternInvocation},
@@ -78,7 +78,7 @@ namespace SimplePatternMatching.AcceptanceTests
         [Fact]
         public void ShouldEvaluatePredicateForFirstArgumentWhenMatchingPatterns()
         {
-            var action = new Match<string, int>
+            var action = new MatchAction<string, int>
             {
                 {"a", 3, (s, i) => state = PatternAAnd3Invocation},
                 {s => s.StartsWith("d"), 21, (s, i) => state = PredicatePatternInvocation},
@@ -93,7 +93,7 @@ namespace SimplePatternMatching.AcceptanceTests
         [Fact]
         public void ShouldHandleNullPattern()
         {
-            var action = new Match<string, int?>
+            var action = new MatchAction<string, int?>
             {
                 {"a", 3, (s, i) => state = PatternAAnd3Invocation},
                 {Match.Null, (s, i) => state = NullPatternInvocation}

@@ -18,7 +18,7 @@ namespace SimplePatternMatching.AcceptanceTests
         [Fact]
         public void ShouldCallProperActionWhenPatternMatches()
         {
-            var action = new Match<string>
+            var action = new MatchAction<string>
             {
                 {"a", s => state = PatternAInvocation},
                 {"b", s => state = PatternBInvocation},
@@ -33,7 +33,7 @@ namespace SimplePatternMatching.AcceptanceTests
         [Fact]
         public void ShouldNotCallAnyActionWhenPatternDoesNotMatch()
         {
-            var action = new Match<string>
+            var action = new MatchAction<string>
             {
                 {"a", s => state = PatternAInvocation},
                 {"b", s => state = PatternBInvocation}
@@ -47,7 +47,7 @@ namespace SimplePatternMatching.AcceptanceTests
         [Fact]
         public void ShouldCallDefaultActionWhenPatternDoesNotMatchAndDefaultIsSpecified()
         {
-            var action = new Match<string>
+            var action = new MatchAction<string>
             {
                 {"a", s => state = PatternAInvocation},
                 {"b", s => state = PatternBInvocation},
@@ -62,7 +62,7 @@ namespace SimplePatternMatching.AcceptanceTests
         [Fact]
         public void ShouldInvokeOnlyFirstMatch()
         {
-            var action = new Match<string>
+            var action = new MatchAction<string>
             {
                 {"a", s => state = PatternAInvocation},
                 {"a", s => state = PatternASecondInvocation},
@@ -77,7 +77,7 @@ namespace SimplePatternMatching.AcceptanceTests
         [Fact]
         public void ShouldEvaluatePredicateWhenMatchingPatterns()
         {
-            var action = new Match<string>
+            var action = new MatchAction<string>
             {
                 {"a", s => state = PatternAInvocation},
                 {s => s.StartsWith("d"), s => state = PredicatePatternInvocation},
@@ -92,7 +92,7 @@ namespace SimplePatternMatching.AcceptanceTests
         [Fact]
         public void ShouldHandleNullPattern()
         {
-            var action = new Match<string>
+            var action = new MatchAction<string>
             {
                 {"a", s => state = PatternAInvocation},
                 {Match.Null, s => state = NullPatternInvocation}

@@ -4,9 +4,9 @@ using SimplePatternMatching.Specification;
 
 namespace SimplePatternMatching
 {
-    public sealed class Match<T> : IEnumerable
+    public sealed class MatchAction<T> : IEnumerable
     {
-        private readonly PatternMatcher<T> matcher = new PatternMatcher<T>(); 
+        private readonly PatternActionMatcher<T> actionMatcher = new PatternActionMatcher<T>(); 
 
         public Action<T> Action
         {
@@ -14,29 +14,29 @@ namespace SimplePatternMatching
             {
                 return arg =>
                 {
-                    matcher.Invoke(arg);
+                    actionMatcher.Invoke(arg);
                 };
             }
         }
 
         public void Add(T pattern, Action<T> action)
         {
-            matcher.Add(new PatternRule<T>(action, new EqualsSpecification<T>(pattern)));
+            actionMatcher.Add(new PatternActionRule<T>(action, new EqualsSpecification<T>(pattern)));
         }
 
         public void Add(Predicate<T> predicate, Action<T> action)
         {
-            matcher.Add(new PatternRule<T>(action, new PredicateSpecification<T>(predicate)));
+            actionMatcher.Add(new PatternActionRule<T>(action, new PredicateSpecification<T>(predicate)));
         }
 
         public void Add(Default @default, Action<T> action)
         {
-            matcher.DefaultRule(action);
+            actionMatcher.DefaultRule(action);
         }
 
         public void Add(Null @null, Action<T> action)
         {
-            matcher.NullRule(action);
+            actionMatcher.NullRule(action);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -45,9 +45,9 @@ namespace SimplePatternMatching
         }
     }
 
-    public sealed class Match<T1, T2> : IEnumerable
+    public sealed class MatchAction<T1, T2> : IEnumerable
     {
-        private readonly PatternMatcher<T1, T2> matcher = new PatternMatcher<T1, T2>();
+        private readonly PatternActionMatcher<T1, T2> actionMatcher = new PatternActionMatcher<T1, T2>();
 
         public Action<T1, T2> Action
         {
@@ -55,43 +55,43 @@ namespace SimplePatternMatching
             {
                 return (arg1, arg2) =>
                 {
-                    matcher.Invoke(arg1, arg2);
+                    actionMatcher.Invoke(arg1, arg2);
                 };
             }
         }
 
         public void Add(T1 firstPattern, T2 secondPattern, Action<T1, T2> action)
         {
-            matcher.Add(new PatternRule<T1, T2>(action, new EqualsSpecification<T1, T2>(firstPattern, secondPattern)));
+            actionMatcher.Add(new PatternActionRule<T1, T2>(action, new EqualsSpecification<T1, T2>(firstPattern, secondPattern)));
         }
 
         public void Add(Predicate<T1> firstPredicate, Predicate<T2> secondPredicate, Action<T1, T2> action)
         {
-            matcher.Add(new PatternRule<T1, T2>(action, new PredicateSpecification<T1, T2>(firstPredicate, secondPredicate)));
+            actionMatcher.Add(new PatternActionRule<T1, T2>(action, new PredicateSpecification<T1, T2>(firstPredicate, secondPredicate)));
         }
 
         public void Add(Predicate<T1> firstPredicate, T2 secondPattern, Action<T1, T2> action)
         {
-            matcher.Add(new PatternRule<T1, T2>(action,
+            actionMatcher.Add(new PatternActionRule<T1, T2>(action,
                 new CombinedSpecification<T1, T2>(new PredicateSpecification<T1>(firstPredicate),
                     new EqualsSpecification<T2>(secondPattern))));
         }
 
         public void Add(T1 firstPattern, Predicate<T2> secondPredicate, Action<T1, T2> action)
         {
-            matcher.Add(new PatternRule<T1, T2>(action,
+            actionMatcher.Add(new PatternActionRule<T1, T2>(action,
                 new CombinedSpecification<T1, T2>(new EqualsSpecification<T1>(firstPattern),
                     new PredicateSpecification<T2>(secondPredicate))));
         }
 
         public void Add(Default @default, Action<T1, T2> action)
         {
-            matcher.DefaultRule(action);
+            actionMatcher.DefaultRule(action);
         }
 
         public void Add(Null @null, Action<T1, T2> action)
         {
-            matcher.NullRule(action);
+            actionMatcher.NullRule(action);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

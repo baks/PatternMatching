@@ -13,4 +13,18 @@
 
         bool IsSatisfiedByPattern(T1 againstArg1, T2 againstArg2);
     }
+
+    public interface FuncRule<TResult>
+    {
+        TResult Invoke();
+
+        bool IsSatisfiedByPattern<T>(T against);
+    }
+
+    public interface FuncRule<TArg, TResult>
+    {
+        TResult Invoke(TArg arg);
+
+        bool IsSatisfiedByPattern(TArg against);
+    }
 }

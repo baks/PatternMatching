@@ -5,11 +5,11 @@ using SimplePatternMatching.Specification;
 
 namespace SimplePatternMatching
 {
-    public class PatternMatcher<T>
+    public class PatternActionMatcher<T>
     {
         private readonly List<Rule<T>> rules = new List<Rule<T>>();
 
-        private Rule<T> defaultRule = new NullRule<T>(new FalseSpecification());
+        private Rule<T> defaultRule = new NullRule<T>(new TrueSpecification());
 
         public void Add(Rule<T> rule)
         {
@@ -18,12 +18,12 @@ namespace SimplePatternMatching
 
         public void DefaultRule(Action<T> action)
         {
-            defaultRule = new PatternRule<T>(action, new TrueSpecification());
+            defaultRule = new PatternActionRule<T>(action, new TrueSpecification());
         }
 
         public void NullRule(Action<T> action)
         {
-            rules.Add(new PatternRule<T>(action, new MatchNullSpecification()));
+            rules.Add(new PatternActionRule<T>(action, new MatchNullSpecification()));
         }
 
         public void Invoke(T arg)
@@ -37,11 +37,11 @@ namespace SimplePatternMatching
         }
     }
 
-    public class PatternMatcher<T1, T2>
+    public class PatternActionMatcher<T1, T2>
     {
         private readonly List<Rule<T1, T2>> rules = new List<Rule<T1, T2>>();
 
-        private Rule<T1, T2> defaultRule = new NullRule<T1, T2>(new FalseSpecification<T1, T2>());
+        private Rule<T1, T2> defaultRule = new NullRule<T1, T2>(new TrueSpecification<T1, T2>());
 
         public void Add(Rule<T1, T2> rule)
         {
@@ -50,12 +50,12 @@ namespace SimplePatternMatching
 
         public void DefaultRule(Action<T1,T2> action)
         {
-            defaultRule = new PatternRule<T1, T2>(action, new TrueSpecification<T1, T2>());
+            defaultRule = new PatternActionRule<T1, T2>(action, new TrueSpecification<T1, T2>());
         }
 
         public void NullRule(Action<T1, T2> action)
         {
-            rules.Add(new PatternRule<T1, T2>(action, new MatchNullSpecification<T1, T2>()));
+            rules.Add(new PatternActionRule<T1, T2>(action, new MatchNullSpecification<T1, T2>()));
         }
 
         public void Invoke(T1 arg1, T2 arg2)

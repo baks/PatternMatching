@@ -42,14 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MatchFunc.cs" />
+    <Compile Include="Maybe.cs" />
+    <Compile Include="NullFuncRule.cs" />
+    <Compile Include="PatternFuncMatcher.cs" />
+    <Compile Include="PatternFuncRule.cs" />
     <Compile Include="Specification\CombinedSpecification.cs" />
     <Compile Include="Specification\FalseSpecification.cs" />
-    <Compile Include="Match.cs" />
+    <Compile Include="MatchAction.cs" />
     <Compile Include="Specification\MatchNullSpecification.cs" />
     <Compile Include="NullRule.cs" />
-    <Compile Include="PatternMatcher.cs" />
+    <Compile Include="PatternActionMatcher.cs" />
     <Compile Include="Specification\PatternMatchSpecification.cs" />
-    <Compile Include="PatternRule.cs" />
+    <Compile Include="PatternActionRule.cs" />
     <Compile Include="Specification\PredicateSpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specification\EqualsSpecification.cs" />
